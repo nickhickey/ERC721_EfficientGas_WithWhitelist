@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: MIT
+// Author: Nicholas Hickey
 
 pragma solidity >=0.7.0 <0.9.0;
 
@@ -157,17 +158,8 @@ contract SimpleNftLowerGas is ERC721, Ownable {
 
 
   function withdraw() public onlyOwner {
- 
-
-    //(bool hs, ) = payable(0x943590A42C27D08e3744202c4Ae5eD55c2dE240D).call{value: address(this).balance * 5 / 100}("");
-    //require(hs);
-    // =============================================================================
-
-    // 5% division for now, fuck ya bahd
-    // =============================================================================
     (bool os, ) = payable(owner()).call{value: address(this).balance}("");
     require(os);
-    // =============================================================================
   }
 
   function _mintLoop(address _receiver, uint256 _mintAmount) internal {
